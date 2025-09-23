@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gabriel Mengue — Portfólio</title>
+
+  <meta name="description" content="Portfólio profissional: projetos, habilidades e contato." />
+  <meta property="og:title" content="Gabriel Mengue — Portfólio" />
+  <meta property="og:description" content="Portfólio profissional: projetos, habilidades e contato." />
+  <meta property="og:type" content="website" />
+  <meta name="theme-color" content="#0f172a" />
+
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 256 256'><text y='0.9em' font-size='200'>💼</text></svg>">
+  <link rel="stylesheet" href="styles.css" />
+
+  <script>
+  
+    const applyTheme = (t) => document.documentElement.setAttribute('data-theme', t);
+    const stored = localStorage.getItem('theme');
+    if (stored) { applyTheme(stored); }
+    else if (window.matchMedia('(prefers-color-scheme: light)').matches) { applyTheme('light'); }
+    function toggleTheme(){
+      const curr = document.documentElement.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+      applyTheme(curr); localStorage.setItem('theme', curr);
+    }
+  </script>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container nav" role="navigation" aria-label="principal">
+      <nav class="nav-links">
+        <a class="btn" href="#projetos">Projetos</a>
+        <a class="btn" href="#sobre">Sobre</a>
+        <a class="btn" href="#experiencia">Experiência</a>
+        <a class="btn" href="#contato">Contato</a>
+      </nav>
+
+      
+      <div class="utilities">
+        <button class="btn" type="button" onclick="toggleTheme()" aria-label="Alternar tema">🌓</button>
+        <a class="btn primary" href="https://raw.githubusercontent.com/Meng0la/CV.pdf/main/Curriculo_Gabriel_Mengue.pdf" download>Baixar CV</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <main class="container">
+    <section class="hero" id="inicio">
+      <div>
+        <p class="kicker">Disponível para oportunidades</p>
+        <h1>Construo soluções em <span class="grad-text">Automação, Web e Dados</span>.</h1>
+        <p>Me chamo, <strong>Gabriel</strong>, desenvolvedor focado em tornar processos mais simples e eficientes. Abaixo você encontra meus projetos, stack e formas de contato.</p>
+        <div class="badges" aria-label="Redes sociais">
+          <a class="badge" href="https://github.com/Meng0la" target="_blank" rel="noopener">GitHub</a>
+          <a class="badge" href="https://www.linkedin.com/in/gabriel-mengue-barros-b23447268/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="badge" href="mailto:g.menguebarros@gmail.com">E-mail</a>
+          <a class="badge" href="#contato">Fale comigo</a>
+        </div>
+      </div>
+
+      <div class="portrait">
+        <img src="myfoto.jpeg" alt="Foto de Gabriel" />
+      </div>
+    </section>
+
+    <!-- Projetos -->
+    <section id="projetos" aria-labelledby="projetos-title">
+      <p class="kicker">Trabalho em destaque</p>
+      <h2 id="projetos-title">Projetos</h2>
+
+      <div class="grid">
+        <!-- Projeto 1 -->
+        <article class="card" aria-labelledby="p1-title">
+          <div class="thumb">
+            <img src="robot.png" alt="Ícone do bot de WhatsApp" loading="lazy" width="310" height="350">
+          </div>
+          <div class="meta"><span>2025</span><span>JS • SQLite</span></div>
+          <h3 id="p1-title">Bot no WhatsApp</h3>
+          <p>Bot que agiliza e filtra pedidos de peças para o técnico em campo na área de manutenção.</p>
+          <p>Feito com JavaScript e SQLite.</p>
+          <div>
+            <a href="https://github.com/Meng0la/bot_wpps" class="btn" target="_blank" rel="noopener">Repositório</a>
+          </div>
+        </article>
+
+        <!-- Projeto 2 -->
+        <article class="card" aria-labelledby="p2-title">
+          <div class="thumb">
+            <img src="Game.png" alt="Ícone do scraper de ofertas de games" loading="lazy" width="310" height="350">
+          </div>
+          <div class="meta"><span>2025</span><span>Crawler em Python • WebScraping</span></div>
+          <h3 id="p2-title">Scan Crawler de Estudo (EYEVOKE)</h3>
+          <p>Crawler em Python que varre páginas a partir de uma URL inicial, identifica links ocultos e tags <em>noindex</em>, lê o sitemap e gera achados.</p>
+          <p>Stack: Python, Requests, BeautifulSoup, Regex.</p>
+          <div>
+            <a href="https://gist.github.com/Meng0la/7597f4dc33803f67ec98b1c09a828eea" class="btn" target="_blank" rel="noopener">Código</a>
+          </div>
+        </article>
+
+        <!-- Projeto 3 -->
+        <article class="card" aria-labelledby="p3-title">
+          <div class="thumb">
+            <img src="preventivas_play.png" alt="Ícone da automação em Playwright" loading="lazy" width="310" height="350">
+          </div>
+          <div class="meta"><span>2024</span><span>Python • Playwright</span></div>
+          <h3 id="p3-title">Automação de relatórios operacionais</h3>
+          <p>RPA em Python + Playwright que preenche e lança pedidos de manutenção preventiva no sistema web.</p>
+          <div>
+            <a href="https://www.youtube.com/embed/mbMUobdoj5o?si=5BdGfxCyz-ElzlUW" class="btn" target="_blank" rel="noopener">Vídeo</a>
+            <a href="https://gist.github.com/Meng0la/99ac1521571bc84184e681a957754e21" class="btn" target="_blank" rel="noopener">Código</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Sobre -->
+    <section id="sobre" aria-labelledby="sobre-title">
+      <p class="kicker">Sobre</p>
+      <h2 id="sobre-title">Sobre mim</h2>
+
+      <div class="timeline">
+        <div class="item">
+          <h3>Quem eu sou</h3>
+          <p>
+            Me chamo <strong>Gabriel Mengue</strong>, profissional que migrou da gestão e operação de manutenção de frotas para
+            <strong>tecnologia e automação</strong>. Na <strong>Macromaq</strong> (Auxiliar → Assistente → Analista → <strong>Supervisor de Manutenção</strong>),
+            liderei cronogramas de preventivas/corretivas, OMs, indicadores e atendimento a clientes como Arauco, Heineken, CMPC e Klabin.
+            Para ganhar eficiência, desenvolvo <strong>soluções em Python/JavaScript</strong> (Playwright/Selenium, Google Sheets/Apps Script)
+            e <strong>bots no WhatsApp</strong> para catálogos, respostas automáticas, scraping e dashboards.
+          </p>
+        </div>
+
+        <div class="item">
+          <h3>O que eu faço</h3>
+          <p>
+            Construo <strong>RPA</strong>, crawlers e integrações com <strong>APIs/Webhooks</strong>, transformando processos reais em
+            scripts e dados acionáveis. Tenho prática com parsing de PDFs, automações de planilhas, painéis operacionais,
+            e estudo <strong>Segurança Cibernética</strong> para elevar qualidade e robustez das soluções.
+          </p>
+        </div>
+
+        <div class="item">
+          <h3>Como eu trabalho</h3>
+          <p>
+            Foco em entregar rápido e iterar com feedback. Valorizo simplicidade, documentação clara e métricas de resultado
+            (tempo, custo, disponibilidade). Quero atuar em times onde eu possa <strong>prototipar, validar e escalar</strong> do laboratório ao uso em produção.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiência -->
+    <section id="experiencia" aria-labelledby="xp-title">
+      <p class="kicker">Trajetória</p>
+      <h2 id="xp-title">Experiência</h2>
+      <div class="timeline">
+        <div class="item">
+          <h3>Supervisor de Manutenção — Macromaq <span class="muted">(2024–2025)</span></h3>
+          <p>Gestão de frota, cronogramas de preventivas e automações para relatórios operacionais.</p>
+        </div>
+        <div class="item">
+          <h3>Analista Administrativo — Macromaq <span class="muted">(2024–2024)</span></h3>
+          <p>Implementação de programas de preventivas, programação de apoio técnico.</p>
+        </div>
+        <div class="item">
+          <h3>Assistente Administrativo — Macromaq <span class="muted">(2022–2024)</span></h3>
+          <p>Indicadores, controle de OMs e suporte às áreas de compras e logística.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Formação -->
+    <section id="formacao" aria-labelledby="form-title">
+      <p class="kicker">Trajetória</p>
+      <h2 id="form-title">Formação</h2>
+      <div class="timeline">
+        <div class="item">
+          <h3>Senac <span class="muted">(2025–2028)</span></h3>
+          <p>Tecnologia em Segurança Cibernética.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section id="contato" aria-labelledby="contato-title">
+      <p class="kicker">Vamos conversar</p>
+      <h2 id="contato-title">Contato</h2>
+
+      <form id="contato-form" action="https://formsubmit.co/g.menguebarros@gmail.com" method="POST">
+        <input type="hidden" name="_captcha" value="false">
+        <label for="nome">Nome</label>
+        <input id="nome" name="nome" type="text" required>
+
+        <label for="email">E-mail</label>
+        <input id="email" name="email" type="email" required>
+
+        <label for="msg">Mensagem</label>
+        <textarea id="msg" name="mensagem" rows="15" required></textarea>
+
+        <!-- honeypot anti-spam -->
+        <input id="website" name="website" type="text" autocomplete="off" style="display:none">
+
+        <button class="btn primary" type="submit">Enviar</button>
+        <p id="feedback" role="status" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Gabriel.
+    </div>
+  </footer>
+
+  <!-- Scripts (no final) -->
+  <script src="contact.js"></script>
+  <script>
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
