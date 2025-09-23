@@ -1,152 +1,247 @@
+/* ========== Variáveis e base ========== */
 :root{
   --bg:#131414; --panel:#131414; --text:#e6eefc; --muted:#a6b0c3;
-  --brand:#7aa2f7; --brand-2:#34d399; --stroke:#1e273d; --shadow:0 10px 30px rgba(2,6,23,.35)
+  --brand:#7aa2f7; --brand-2:#34d399; --stroke:#1e273d;
+  --shadow:0 10px 30px rgba(2,6,23,.35);
+  --container-max:1100px;
+  --radius-lg:16px; --radius-md:12px; --radius-xl:20px;
+  --gap:16px;
+  --timeline-gap:32px; /* distância linha ↔ texto */
 }
 [data-theme="light"]{
   --bg:#f6f7fb; --panel:#fff; --text:#0f172a; --muted:#475569;
-  --brand:#2563eb; --stroke:#e5e7eb; --brand-2:#059669; --shadow:0 8px 24px rgba(2,6,23,.08)
+  --brand:#2563eb; --stroke:#e5e7eb; --brand-2:#059669;
+  --shadow:0 8px 24px rgba(2,6,23,.08);
 }
-*{box-sizing:border-box}
-html,body{height:100%}
+
+/* Safari/iOS: evita zoom ao focar input e ajustes automáticos de tamanho de texto */
+html{
+  -webkit-text-size-adjust: 100%;
+}
+*{ box-sizing:border-box; }
+html,body{ height:100%; }
 body{
-  margin:0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Noto Sans", sans-serif;
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, "Noto Sans", sans-serif;
   background:
     radial-gradient(1200px 800px at 80% -10%, rgba(122,162,247,.12), transparent 60%),
     radial-gradient(900px 600px at -10% 30%, rgba(52,211,153,.10), transparent 60%),
     var(--bg);
-  color:var(--text); line-height:1.6;
+  color:var(--text);
+  line-height:1.6;
 }
-a{color:var(--brand); text-decoration:none}
-a:hover{text-decoration:underline}
-.container{max-width:1100px; margin:0 auto; padding:24px}
+img, video{ max-width:100%; height:auto; display:block; } /* iOS: evita overflow */
+a{ color:var(--brand); text-decoration:none; }
+a:hover{ text-decoration:underline; }
+.container{ max-width:var(--container-max); margin:0 auto; padding:24px 20px; }
 
-/* Header */
-header{position:sticky; top:0; z-index:50; backdrop-filter:saturate(1.2) blur(6px);
-  background:color-mix(in srgb, var(--bg) 75%, transparent); border-bottom:1px solid var(--stroke)}
-.nav{position:relative; display:flex; align-items:center; justify-content:flex-start; gap:12px}
-.nav-links{display:flex; gap:10px; flex-wrap:wrap}
+/* ========== Header / Nav ========== */
+header{
+  position:sticky; top:0; z-index:50;
+  backdrop-filter:saturate(1.2) blur(6px);
+  background:color-mix(in srgb, var(--bg) 75%, transparent);
+  border-bottom:1px solid var(--stroke);
+}
+.nav{
+  position:relative;
+  display:flex; align-items:center; justify-content:flex-start; gap:12px;
+}
+.nav-links{ display:flex; gap:10px; flex-wrap:wrap; }
 
-.btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border:1px solid var(--stroke); border-radius:12px; background:var(--panel); color:var(--text); box-shadow:var(--shadow); transition:transform .15s}
-.btn:hover{transform:translateY(-1px)}
-.btn.primary{background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff; border:none}
+.btn{
+  display:inline-flex; align-items:center; gap:8px;
+  padding:10px 14px; border:1px solid var(--stroke);
+  border-radius:var(--radius-md);
+  background:var(--panel); color:var(--text);
+  box-shadow:var(--shadow);
+  transition:transform .15s ease;
+  will-change: transform;
+}
+.btn:hover{ transform:translateY(-1px); }
+.btn.primary{
+  background:linear-gradient(135deg, var(--brand), var(--brand-2));
+  color:#fff; border:none;
+}
 
+/* Botões fixos no canto superior direito */
 .utilities{
   position:fixed; top:12px; right:max(16px, env(safe-area-inset-right));
   display:flex; gap:10px; z-index:100;
 }
-header .container{ padding-right:170px; } /* respiro p/ não colidir com os fixos */
+/* respiro do header pra não colidir com os fixes */
+header .container{ padding-right:170px; }
+
+/* Responsivo do header */
 @media (max-width:520px){
   header .container{ padding-right:120px; }
   .utilities{ gap:8px; }
   .utilities .btn.primary{ padding:8px 12px; }
 }
 
-/* Foto */
-.portrait{ width:150px; height:250px; border-radius:20px; overflow:hidden; aspect-ratio:1/1;
-  background:linear-gradient(135deg, rgba(122,162,247,.18), rgba(52,211,153,.18)); border:1px solid var(--stroke); display:grid; place-items:center }
-.portrait img{ width:100%; height:100%; object-fit:cover; border-radius:20px }
-
-/* Hero */
-.hero{display:grid; grid-template-columns:1.1fr .9fr; gap:28px; align-items:center; padding:56px 0}
-.hero h1{font-size:clamp(28px, 4vw, 48px); line-height:1.1; margin:0 0 14px; letter-spacing:.2px}
-.grad-text{ background:linear-gradient(135deg,var(--brand),var(--brand-2)); -webkit-background-clip:text; background-clip:text; color:transparent }
-.hero p{color:var(--muted); margin:0 0 18px}
-.badges{display:flex; gap:10px; flex-wrap:wrap}
-.badge{padding:6px 10px; border:1px solid var(--stroke); border-radius:999px; font-size:.9rem; background:color-mix(in srgb, var(--panel) 90%, transparent)}
-
-section{padding:28px 0}
-h2{font-size:clamp(22px,2.8vw,30px); margin:0 0 14px}
-.kicker{color:var(--muted); font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:.8rem; margin-bottom:6px}
-
-/* Cards */
-.grid{display:grid; gap:16px}
-@media (min-width:720px){ .grid{grid-template-columns:repeat(2,1fr)} }
-@media (min-width:1024px){ .grid{grid-template-columns:repeat(3,1fr)} }
-
-.card{border:1px solid var(--stroke); background:var(--panel); border-radius:16px; padding:16px; display:flex; flex-direction:column; gap:12px; box-shadow:var(--shadow); transition:transform .2s}
-.card:hover{transform:translateY(-3px)}
-.card .thumb{aspect-ratio:16/9; border-radius:12px; border:1px solid var(--stroke); background:linear-gradient(135deg, rgba(122,162,247,.12), rgba(52,211,153,.12)); display:grid; place-items:center; font-weight:700}
-.card .meta{display:flex; justify-content:space-between; gap:8px; color:var(--muted); font-size:.9rem}
-
-/* Skills */
-.skills{display:flex; gap:12px; flex-wrap:wrap}
-.chip{background:color-mix(in srgb, var(--panel) 90%, transparent); border:1px solid var(--stroke); padding:8px 12px; border-radius:12px}
-
-/* Timeline */
-.timeline{ --dot-gap:32px; border-left:2px dashed var(--stroke); padding-left:var(--dot-gap); display:grid; gap:18px }
-.timeline .item{ position:relative }
-.timeline .item::before{
-  content:""; position:absolute; top:4px; width:12px; height:12px; border-radius:999px; background:var(--brand);
-  left: calc(-1 * var(--dot-gap) + 5px);
+/* ========== Hero / Foto ========== */
+.hero{
+  display:grid; grid-template-columns:1.1fr .9fr;
+  gap:28px; align-items:center; padding:56px 0;
 }
-.item h3{ margin:0 0 6px; font-size:1.05rem }
-.item p{ margin:0; color:var(--muted) }
-.muted{ color:var(--muted) }
+.hero h1{
+  font-size:clamp(28px, 4vw, 48px);
+  line-height:1.1; margin:0 0 14px; letter-spacing:.2px;
+}
+.grad-text{
+  background:linear-gradient(135deg,var(--brand),var(--brand-2));
+  -webkit-background-clip:text; background-clip:text; color:transparent;
+}
+.hero p{ color:var(--muted); margin:0 0 18px; }
+.badges{ display:flex; gap:10px; flex-wrap:wrap; }
+.badge{
+  padding:6px 10px; border:1px solid var(--stroke); border-radius:999px;
+  font-size:.9rem; background:color-mix(in srgb, var(--panel) 90%, transparent);
+}
 
-/* Contato */
-form{display:grid; gap:12px}
-label{font-weight:600}
-input, textarea{width:100%; padding:12px 14px; border-radius:12px; border:1px solid var(--stroke); background:var(--panel); color:var(--text)}
-textarea{min-height:120px; resize:vertical}
+/* Retrato — versão estável no iOS (sem height fixo) */
+.portrait{
+  width:min(38vw, 220px);
+  aspect-ratio: 3 / 4;        /* preenche automático e consistente */
+  overflow:hidden; border-radius:var(--radius-xl);
+  background:linear-gradient(135deg, rgba(122,162,247,.18), rgba(52,211,153,.18));
+  border:1px solid var(--stroke);
+  display:grid; place-items:center;
+}
+.portrait img{
+  width:100%; height:100%; object-fit:cover; border-radius:var(--radius-xl);
+}
 
-/* Footer */
-footer{padding:36px 0 60px; color:var(--muted); border-top:1px solid var(--stroke)}
+/* Fallback para navegadores sem aspect-ratio (iOS muito antigo) */
+@supports not (aspect-ratio: 1 / 1){
+  .portrait{ position:relative; width:min(38vw, 220px); }
+  .portrait::before{ content:""; display:block; padding-top: calc(100% * 4 / 3); }
+  .portrait img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+}
 
-/* Regras base úteis para responsividade */
-img, video { max-width: 100%; height: auto; } /* evita overflow */
-.container { padding-left: 20px; padding-right: 20px; } /* um pouco mais compacto */
+/* ========== Seções e títulos ========== */
+section{ padding:28px 0; }
+h2{ font-size:clamp(22px,2.8vw,30px); margin:0 0 14px; }
+.kicker{ color:var(--muted); font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:.8rem; margin-bottom:6px; }
 
-/* Tablet e abaixo */
+/* ========== Cards de Projetos ========== */
+.grid{ display:grid; gap:var(--gap); }
+@media (min-width:720px){ .grid{ grid-template-columns:repeat(2,1fr); } }
+@media (min-width:1024px){ .grid{ grid-template-columns:repeat(3,1fr); } }
+
+.card{
+  border:1px solid var(--stroke); background:var(--panel);
+  border-radius:var(--radius-lg); padding:16px;
+  display:flex; flex-direction:column; gap:12px;
+  box-shadow:var(--shadow); transition:transform .2s ease;
+}
+.card:hover{ transform:translateY(-3px); }
+
+.card .thumb{
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: linear-gradient(135deg, rgba(122,162,247,.12), rgba(52,211,153,.12));
+  display: flex;            /* centraliza img */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Ícone sem corte */
+.card .thumb img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;      /* <= antes era cover */
+  padding: 12px;            /* respiro pra não encostar nas bordas */
+  display: block;
+  border-radius: 0;         /* borda só no container */
+}
+
+/* Fallback aspect ratio para thumbs */
+@supports not (aspect-ratio: 1 / 1){
+  .card .thumb{ position:relative; }
+  .card .thumb::before{ content:""; display:block; padding-top: calc(100% * 9 / 16); }
+  .card .thumb > img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+}
+
+.card .meta{
+  display:flex; justify-content:space-between; gap:8px;
+  color:var(--muted); font-size:.9rem;
+}
+
+/* ========== Skills ========== */
+.skills{ display:flex; gap:12px; flex-wrap:wrap; }
+.chip{
+  background:color-mix(in srgb, var(--panel) 90%, transparent);
+  border:1px solid var(--stroke); padding:8px 12px; border-radius:12px;
+}
+
+/* ========== Timeline ========== */
+.timeline{
+  border-left:2px dashed var(--stroke);
+  padding-left:var(--timeline-gap);
+  display:grid; gap:18px;
+}
+.timeline .item{ position:relative; }
+.timeline .item::before{
+  content:""; position:absolute; top:4px;
+  width:12px; height:12px; border-radius:999px; background:var(--brand);
+  left: calc(-1 * var(--timeline-gap) + 5px);
+}
+.item h3{ margin:0 0 6px; font-size:1.05rem; }
+.item p{ margin:0; color:var(--muted); }
+.muted{ color:var(--muted); }
+
+/* ========== Contato ========== */
+form{ display:grid; gap:12px; }
+label{ font-weight:600; }
+input, textarea{
+  width:100%; padding:12px 14px; border-radius:12px;
+  border:1px solid var(--stroke); background:var(--panel); color:var(--text);
+  font-size:16px; /* iOS: evita zoom ao focar */
+}
+textarea{ min-height:120px; resize:vertical; }
+
+/* ========== Footer ========== */
+footer{
+  padding:36px 0 60px; color:var(--muted); border-top:1px solid var(--stroke);
+}
+
+/* ========== Responsividade adicional ========== */
+
+/* Tablet ↓ */
 @media (max-width: 900px){
-  /* HERO: vira 1 coluna e centraliza a foto */
   .hero{
     grid-template-columns: 1fr;
     gap: 22px;
     padding: 40px 0;
   }
   .hero > div:first-child { order: 1; }
-  .hero .portrait{ 
-    order: 2; 
-    justify-self: start; /* se quiser centralizada: center */
-    width: 180px; height: auto; aspect-ratio: 3 / 4;
+  .hero .portrait{
+    order: 2;
+    justify-self: start;           /* ou center se preferir centralizada */
+    width: 180px; aspect-ratio: 3 / 4;
   }
-  .portrait img{ border-radius: 20px; }
-
-  /* grid de projetos: 2 colunas no tablet */
   .grid{ grid-template-columns: 1fr 1fr; }
 }
 
-/* Mobile “puro” */
+/* Mobile ↓ */
 @media (max-width: 600px){
-  /* header: dá mais espaço pros botões fixos */
   header .container{ padding-right: 120px; }
-
-  /* utilidades: aproxima do canto */
   .utilities{ top: 10px; right: 12px; gap: 8px; }
   .utilities .btn.primary{ padding: 8px 12px; }
 
-  /* HERO: fontes e espaçamentos menores */
-  .hero{ gap: 18px; padding: 28px 0; }
+  .hero{ gap:18px; padding:28px 0; }
   .hero h1{ font-size: clamp(26px, 7vw, 34px); }
-  .kicker{ font-size: .75rem; }
+  .kicker{ font-size:.75rem; }
 
-  /* portrait mais amigável no mobile */
-  .hero .portrait{
-    width: 140px; aspect-ratio: 3 / 4;
-    margin-top: 6px;
-  }
+  .hero .portrait{ width: 150px; aspect-ratio: 3 / 4; margin-top: 6px; }
 
-  /* grid de projetos: 1 coluna no celular */
   .grid{ grid-template-columns: 1fr; }
-
-  /* cards: menos padding */
   .card{ padding: 14px; }
 
-  /* timeline: aproxima o texto da linha pra caber melhor */
-  .timeline{
-    --dot-gap: 24px;  /* você já usa var --dot-gap no patch anterior */
-    padding-left: var(--dot-gap);
-  }
+  .timeline{ --timeline-gap:24px; padding-left:var(--timeline-gap); }
   .item h3{ font-size: 1rem; }
   .item p{ font-size: .95rem; }
 }
@@ -156,5 +251,3 @@ img, video { max-width: 100%; height: auto; } /* evita overflow */
   .utilities{ transform: scale(0.92); transform-origin: top right; }
   .badge, .btn{ padding: 9px 12px; }
 }
-
-
