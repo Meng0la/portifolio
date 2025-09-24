@@ -128,6 +128,47 @@ h2{ font-size:clamp(22px,2.8vw,30px); margin:0 0 14px; }
 @media (min-width:720px){ .grid{ grid-template-columns:repeat(2,1fr); } }
 @media (min-width:1024px){ .grid{ grid-template-columns:repeat(3,1fr); } }
 
+/* seção de habilidades */
+.habilidades {
+  padding: 28px 0;
+}
+.habilidades .kicker {
+  color: var(--muted);
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-size: .8rem;
+  margin-bottom: 12px;
+}
+
+/* badges organizadas em flex */
+.habilidades .badges {
+  display: flex;
+  flex-wrap: wrap;         /* permite quebrar linha */
+  gap: 10px;               /* espaçamento entre os itens */
+}
+
+/* cada badge */
+.habilidades .badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 12px;
+  border: 1px solid var(--stroke);
+  background: color-mix(in srgb, var(--panel) 90%, transparent);
+  font-size: .9rem;
+  font-weight: 500;
+  color: var(--text);
+  white-space: nowrap;     /* impede quebrar dentro da badge */
+}
+
+/* responsivo: em telas muito pequenas, deixa as badges mais compactas */
+@media (max-width: 480px) {
+  .habilidades .badge {
+    font-size: .8rem;
+    padding: 5px 8px;
+  }
+}
+
 .card{
   border:1px solid var(--stroke); background:var(--panel);
   border-radius:var(--radius-lg); padding:16px;
@@ -217,6 +258,7 @@ footer{
     gap: 22px;
     padding: 40px 0;
   }
+  
   .hero > div:first-child { order: 1; }
   .hero .portrait{
     order: 2;
@@ -231,12 +273,12 @@ footer{
   header .container{ padding-right: 120px; }
   .utilities{ top: 10px; right: 12px; gap: 8px; }
   .utilities .btn.primary{ padding: 8px 12px; }
-
+  
   .hero{ gap:18px; padding:28px 0; }
   .hero h1{ font-size: clamp(26px, 7vw, 34px); }
   .kicker{ font-size:.75rem; }
 
-  .hero .portrait{ width: 150px; aspect-ratio: 3 / 4; margin-top: 6px; }
+  .hero .portrait .habilidade{ width: 150px; aspect-ratio: 3 / 4; margin-top: 6px; }
 
   .grid{ grid-template-columns: 1fr; }
   .card{ padding: 14px; }
